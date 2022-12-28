@@ -23,6 +23,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
+// @WebMvcTest 는 JPA기능이 작동하지 않기 떄문에 JPA를 테스트할 떄는 @SpringBootTest, TestRestTemplate 사용
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PostsApiControllerTest {
 

@@ -30,6 +30,8 @@ public class PostsRepositoryTest {
         String title = "테스트 게시글";
         String content = "테스트 본문";
 
+        // Jpa를 상속받은 구현체 postRepository의 save메소드는
+        // id값이 있으면 update, 없으면 insert를 수행
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
@@ -37,7 +39,7 @@ public class PostsRepositoryTest {
                 .build());
 
         //when
-        List<Posts> postsList = postsRepository.findAll();
+        List<Posts> postsList = postsRepository.findAll(); // 테이블 posts의 모든 데이터를 조회
 
         //then
         Posts posts = postsList.get(0);
@@ -63,7 +65,7 @@ public class PostsRepositoryTest {
 
         System.out.println(" >>>>>>> createDate =" + posts.getCreatedDate() + ", modifiedDate =" + posts.getModifiedDate());
 
-        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getCreatedDate()).isAfter(now); // now 날짜 이후인지 검증
         assertThat(posts.getModifiedDate()).isAfter(now);
     }
 

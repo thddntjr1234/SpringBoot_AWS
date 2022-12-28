@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostsService {
     private final PostsRepository postsRepository;
 
-    @Transactional
+    @Transactional // @Transactinal이 붙은 메서드는 메서드가 포함하고 있는 작업 중 하나라도 실패하면 전체 작업을 취소한다
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
