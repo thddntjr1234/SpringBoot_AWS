@@ -2,12 +2,16 @@ package com.springboot.service;
 
 import com.springboot.domain.posts.Posts;
 import com.springboot.domain.posts.PostsRepository;
+import com.springboot.web.dto.PostsListResponseDto;
 import com.springboot.web.dto.PostsResponseDto;
 import com.springboot.web.dto.PostsSaveRequestDto;
 import com.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -34,4 +38,13 @@ public class PostsService {
 
         return new PostsResponseDto(entity);
     }
+
+    @Transactional(readOnly = true) // 트랜잭션 범위는 유지하되 조회기능만 남겨서 조회속도 개선 효과를 얻을 수 있다.
+    public List<PostsListResponseDto> findAllDesc() {
+        // List<Posts> 리스트를 PostsListResponseDto 타입으로 바꾼다.
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) // == posts -> new PostsListResponseDto(posts)
+                .collect(Collectors.toList());
+    }
+
 }
