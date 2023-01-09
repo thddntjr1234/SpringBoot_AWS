@@ -64,5 +64,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-2
       
-    - name: Upload to S#
-      run: aws s3 cp s3://aws-codedeploy-ap-northeast-2/latest/install .--region ap-northeast-2
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./$PROJECT_NAME.zip S3://#S3_BUCKET_NAME/$PROJECT_NAME/#PROJECT_NAME.zip
