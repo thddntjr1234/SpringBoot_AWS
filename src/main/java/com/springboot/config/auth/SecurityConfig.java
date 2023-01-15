@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().headers().frameOptions().disable()
                 .and()
                 .authorizeRequests() // URL별 권한을 설정하는 옵션, antMatchers 앞에 선행되어야 한다
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll() // 해당 URL에 대해 전체 열람 권한을 허용
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll() // 해당 URL에 대해 전체 열람 권한을 허용
                 .antMatchers("/api/v1/**").hasRole(Role.USER.name()) // 해당 URL에 대해 USER 권한을 가진 사람만 권한을 준다.
                 .anyRequest().authenticated() // 설정 이외의 URL들은 로그인한 사용자들에게만 허용한다.
                 .and().logout() // 로그아웃 기능에 대한 설정 시작점
