@@ -6,7 +6,6 @@
 function find_idle_profile()
 {
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile) # 현재 nginx가 바라보고 있는 스프링부트가 정상적으로 수행중인지 확인, 응답은 HTTP
-    echo "> RESPONSE_CODE = $RESPONSE_CODE"
 
     if [ ${RESPONSE_CODE} -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
     then
@@ -15,7 +14,6 @@ function find_idle_profile()
         CURRENT_PROFILE=$(curl -s http://localhost/profile)
     fi
 
-    echo "> CURRENT_PROFILE = $CURRENT_PROFILE"
     if [ ${CURRENT_PROFILE} == real1 ]
     then
       IDLE_PROFILE=real2 # IDLE_PROFILE = nginx와 연결되지 않은 profile
