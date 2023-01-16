@@ -16,6 +16,6 @@ else
   echo "> kill -15 $IDLE_PID"
   kill -15 ${IDLE_PID}
   echo "> 현재 프로세스 상태"
-  ps -ef | grep java
   sleep 5
+  ps -ef | grep java
 fi
